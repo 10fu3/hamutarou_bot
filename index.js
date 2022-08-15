@@ -1,5 +1,8 @@
 const { Client, GatewayIntentBits, Partials } = require("discord.js")
 
+const express = require('express');
+
+const port=process.env.PORT || 8080;
 const token = process.env.TOKEN
 
 const client = new Client({
@@ -18,3 +21,10 @@ client.on('messageCreate', message => {
 });
 
 client.login(token)
+
+const app = express();
+
+app.get('/', (req, res)=>{ res.send('ハム太郎BOT'); });
+app.listen(port, ()=>{ console.log(`Express Server Listen START at port=${port}`); });
+
+
